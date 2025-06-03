@@ -2,8 +2,7 @@ package Registration_GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Window extends JFrame implements ActionListener {
     private static final int WINDOW_WIDTH = 930;

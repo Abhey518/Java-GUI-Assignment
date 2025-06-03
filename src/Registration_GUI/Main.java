@@ -20,7 +20,9 @@ public class Main {
         JPanel userInfo = new JPanel();
         userInfo.setBackground(Color.white);
         userInfo.setBounds(530, 100, 300, 440); // setBounds(x, y, width, height)
+        userInfo.setLayout(new BoxLayout(userInfo, BoxLayout.Y_AXIS));
         regWindow.add(userInfo);
+
 
         // label for name to show it in the window
         Label nameLabel = new Label("Name");
@@ -53,13 +55,13 @@ public class Main {
         male.setFont(fieldFont);
         male.setBackground(new Color(224, 224, 224));
         male.setSelected(true);
-        male.setBounds(200, 210, 58, 20); // setBounds(x, y, width, height)
+        male.setBounds(200, 210, 80, 20); // setBounds(x, y, width, height)
         regWindow.add(male);
 
         JRadioButton female = new JRadioButton("Female");
         female.setFont(fieldFont);
         female.setBackground(new Color(224, 224, 224));
-        female.setBounds(274, 210, 76, 20); // setBounds(x, y, width, height)
+        female.setBounds(300, 210, 80, 20); // setBounds(x, y, width, height)
         regWindow.add(female);
 
         ButtonGroup gender = new ButtonGroup();
@@ -128,6 +130,77 @@ public class Main {
         resetButton.setFont(fieldFont);
         resetButton.setBounds(295, 480, 100, 20); // setBounds(x, y, width, height)
         regWindow.add(resetButton);
+
+        JLabel messageText = new JLabel("");
+        messageText.setFont(labelFont);
+        messageText.setBounds(100, 535, 400, 20); // setBounds(x, y, width, height)
+        messageText.setVisible(false);
+        regWindow.add(messageText);
+
+
+
+        submitButton.addActionListener(e -> {
+            messageText.setText("");
+            messageText.setVisible(false);
+            String name = nameTextField.getText().trim();
+            String mobile = mobileTextField.getText().trim();
+            String genderText = male.isSelected() ? "Male" : "Female";
+            String dob = dayCombo.getSelectedItem() + " " + monthCombo.getSelectedItem() + " " + yearCombo.getSelectedItem();
+            String address = addressTextArea.getText().trim();
+
+            // Basic validation
+            if (name.isEmpty() || mobile.isEmpty() || address.isEmpty()) {
+                messageText.setText("Please fill all required fields.");
+                messageText.setVisible(true);
+
+                return;
+            }
+
+            if (!mobile.matches("\\d{10}")) {
+                messageText.setText("Enter a valid 10-digit mobile number.");
+                messageText.setVisible(true);
+                return;
+            }
+
+            if (!checkBox.isSelected()) {
+                messageText.setText("Please accept the terms & conditions..");
+                messageText.setVisible(true);
+                return;
+            }
+
+            // Display entered info
+            userInfo.removeAll();
+            userInfo.add(new JLabel("Name: " + name));
+            userInfo.add(new JLabel("Mobile: " + mobile));
+            userInfo.add(new JLabel("Gender: " + genderText));
+            userInfo.add(new JLabel("DOB: " + dob));
+            userInfo.add(new JLabel("Address: " + address));
+
+
+            userInfo.revalidate();
+            userInfo.repaint();
+
+            // Show success message
+            messageText.setText("Registration Successfully..");
+            messageText.setVisible(true);
+
+
+        });
+
+        resetButton.addActionListener(e -> {
+            messageText.setText("");
+            messageText.setVisible(false);
+            nameTextField.setText("");
+            mobileTextField.setText("");
+            male.setSelected(true);
+            yearCombo.setSelectedIndex(0);
+            monthCombo.setSelectedIndex(0);
+            dayCombo.setSelectedIndex(0);
+            addressTextArea.setText("");
+            checkBox.setSelected(false);
+            userInfo.removeAll();
+            userInfo.repaint();
+        });
 
     }
 }
