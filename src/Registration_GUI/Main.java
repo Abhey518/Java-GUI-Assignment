@@ -11,7 +11,7 @@ public class Main {
 
         Window regWindow = new Window();
         regWindow.setTitle("User Registration");
-        regWindow.setVisible(true);
+
 
         String title = "Registration Form";
         regWindow.set_cTitle(title);
@@ -136,6 +136,8 @@ public class Main {
         messageText.setBounds(100, 535, 400, 20); // setBounds(x, y, width, height)
         messageText.setVisible(false);
         regWindow.add(messageText);
+
+        regWindow.setVisible(true);
 
 
 
