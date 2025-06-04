@@ -3,6 +3,7 @@ package Registration_GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class Window extends JFrame implements ActionListener {
 
@@ -187,6 +188,27 @@ public class Window extends JFrame implements ActionListener {
         resetButton.addActionListener(this);
     }
 
+    private boolean validateDOB() {
+        int day = Integer.parseInt(Objects.requireNonNull(dayCombo.getSelectedItem()).toString());
+        String month = Objects.requireNonNull(monthCombo.getSelectedItem()).toString();
+        int year = Integer.parseInt(Objects.requireNonNull(yearCombo.getSelectedItem()).toString());
+
+        // Validate days based on month
+        if (month.equals("Feb")) {
+            boolean isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+            if (day > (isLeapYear ? 29 : 28)) {
+                showErrorMessage("Invalid date for February " + year);
+                return false;
+            }
+        } else if (month.equals("Apr") || month.equals("Jun") || month.equals("Sep") || month.equals("Nov")) {
+            if (day > 30) {
+                showErrorMessage("Invalid date for " + month + " (max 30 days)");
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent event) {
         // Determine which button was clicked
@@ -224,6 +246,11 @@ public class Window extends JFrame implements ActionListener {
         // Validate mobile number format (10 digits)
         if (!mobile.matches("\\d{10}")) {
             showErrorMessage("Enter a valid 10-digit mobile number..");
+            return;
+        }
+
+        // Validate date of birth
+        if (!validateDOB()) {
             return;
         }
 
