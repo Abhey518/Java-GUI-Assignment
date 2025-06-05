@@ -114,24 +114,6 @@ public class Window extends JFrame implements ActionListener {
         labelDOB.setBounds(100, 265, 50, 20); // setBounds(x, y, width, height)
         contentPane.add(labelDOB);
 
-        // ----- Date of Birth Section ----- : Year selection combo box
-        String[] years = new String[26];
-        for (int j = 0; j <= 25; j++) {
-            years[j] = String.valueOf(1995 + j); // "1995" to "2020"
-        }
-
-        yearCombo = new JComboBox<>(years);
-        yearCombo.setBounds(200, 265, 60, 20); // setBounds(x, y, width, height)
-        yearCombo.setFont(fieldFont);
-        contentPane.add(yearCombo);
-
-        // ----- Date of Birth Section ----- : Month selection combo box
-        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        monthCombo = new JComboBox<>(months);
-        monthCombo.setBounds(270, 265, 55, 20); // setBounds(x, y, width, height)
-        monthCombo.setFont(fieldFont);
-        contentPane.add(monthCombo);
-
         // ----- Date of Birth Section ----- : Day selection combo box
         String[] days = new String[31];
         for (int i = 0; i < 31; i++) {
@@ -139,9 +121,27 @@ public class Window extends JFrame implements ActionListener {
         }
 
         dayCombo = new JComboBox<>(days);
-        dayCombo.setBounds(330, 265, 45, 20); // setBounds(x, y, width, height)
+        dayCombo.setBounds(200, 265, 45, 20); // setBounds(x, y, width, height)
         dayCombo.setFont(fieldFont);
         contentPane.add(dayCombo);
+
+        // ----- Date of Birth Section ----- : Month selection combo box
+        String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        monthCombo = new JComboBox<>(months);
+        monthCombo.setBounds(246, 265, 55, 20); // setBounds(x, y, width, height)
+        monthCombo.setFont(fieldFont);
+        contentPane.add(monthCombo);
+
+        // ----- Date of Birth Section ----- : Year selection combo box
+        String[] years = new String[26];
+        for (int j = 0; j <= 25; j++) {
+            years[j] = String.valueOf(1995 + j); // "1995" to "2020"
+        }
+
+        yearCombo = new JComboBox<>(years);
+        yearCombo.setBounds(320, 265, 60, 20); // setBounds(x, y, width, height)
+        yearCombo.setFont(fieldFont);
+        contentPane.add(yearCombo);
 
         // ----- Address Section ----- : Label for Address
         JLabel labelAddress = new JLabel("Address");
