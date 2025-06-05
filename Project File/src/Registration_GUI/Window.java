@@ -10,8 +10,8 @@ public class Window extends JFrame implements ActionListener {
     // Window dimensions and position constants
     private static final int WINDOW_WIDTH = 930;
     private static final int WINDOW_HEIGHT = 650;
-    private static final int WINDOW_X_ORIGIN = 240;
-    private static final int WINDOW_Y_ORIGIN = 40;
+    private static final int WINDOW_X_ORIGIN = 310;
+    private static final int WINDOW_Y_ORIGIN = 110;
 
     // Font and color constants for consistent styling
     Font labelFont = new Font("Arial", Font.PLAIN, 20);
@@ -197,7 +197,7 @@ public class Window extends JFrame implements ActionListener {
         if (month.equals("Feb")) {
             boolean isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
             if (day > (isLeapYear ? 29 : 28)) {
-                showErrorMessage("Invalid date for February " + year);
+                showErrorMessage("Invalid date for " + month + " " + year);
                 return false;
             }
         } else if (month.equals("Apr") || month.equals("Jun") || month.equals("Sep") || month.equals("Nov")) {
